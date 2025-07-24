@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Privacy Policy | J. Alcabasa HR Management System</title>
+  <link rel="icon" type="image/png" href="/assets/Logo.jpg"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet"/>
+  <style>
+    /* Root variables for theming */
+    :root {
+      /* Main Brand Colors (desaturated for professional look) */
+      --main-brand-color: #c0392b; /* A more subdued, professional red */
+      --main-brand-color-light: #fbecec; /* Lighter shade for accents/hover */
+      --main-brand-color-bg-hover: rgba(192, 57, 43, 0.08); /* Soft hover state */
+      --main-brand-color-border: #e6b0ad; /* For borders/outlines */
+
+      /* Neutral Palette */
+      --body-bg: #f9fafb; /* Light, airy background */
+      --text-color: #34495e; /* Darker text for readability */
+      --text-color-secondary: #7f8c8d; /* Muted secondary text */
+      --text-color-light: #bdc3c7; /* Lighter text for placeholders/hints */
+      --card-bg: #ffffff;
+      --sidebar-bg: #ffffff;
+      --top-navbar-bg: white;
+      --border-color: #ecf0f1; /* Very light, subtle border */
+      --shadow-color: rgba(0,0,0,0.06); /* General softer shadow */
+      --card-shadow: rgba(0,0,0,0.08); /* Slightly more prominent card shadow */
+      --red-accent-shadow: rgba(192,57,43,0.1); /* Subtle red tint for focus states */
+    }
+
+    /* Dark Mode Overrides */
+    body.dark-mode {
+      color-scheme: dark; /* Helps with browser-native UI like scrollbars */
+      --main-brand-color: #ff6b6b; /* Brighter red for dark mode contrast */
+      --main-brand-color-light: #4a1a1a;
+      --main-brand-color-bg-hover: rgba(255,107,107,0.15);
+      --main-brand-color-border: #5c2020;
+
+      --body-bg: #1f252d;
+      --text-color: #ecf0f1;
+      --text-color-secondary: #bdc3c7;
+      --text-color-light: #7f8c8d;
+      --card-bg: #2d343c;
+      --sidebar-bg: #2d343c;
+      --top-navbar-bg: #2d343c;
+      --border-color: #3a4756;
+      --shadow-color: rgba(0,0,0,0.25);
+      --card-shadow: rgba(0,0,0,0.35);
+      --red-accent-shadow: rgba(255,107,107,0.15);
+
+      /* Dark mode status colors */
+      --status-success: #2ecc71;
+      --status-warning: #f1c40f;
+      --status-danger: #e74c3c;
+      --status-info: #3498db;
+      --status-secondary: #95a5a6;
+    }
+
+    /* Base Body Styles */
+    body {
+      background-color: var(--body-bg);
+      overflow-x: hidden;
+      color: var(--text-color);
+      transition: background-color 0.3s ease, color 0.3s ease;
+      font-family: 'Segoe UI', Arial, sans-serif; /* Professional font */
+      font-size: 0.95rem; /* Standard body font size */
+      line-height: 1.6;
+    }
+
+    /* Scrollbar Styling (subtle for professionalism) */
+    body::-webkit-scrollbar {
+        width: 8px;
+    }
+    body::-webkit-scrollbar-track {
+        background: var(--body-bg);
+    }
+    body::-webkit-scrollbar-thumb {
+        background: var(--border-color);
+        border-radius: 4px;
+    }
+    body::-webkit-scrollbar-thumb:hover {
+        background: var(--text-color-light);
+    }
+
+
+    /* Sidebar Styles */
+    .sidebar {
+      width: 260px; /* Slightly wider for content */
+      background-color: var(--sidebar-bg);
+      color: var(--main-brand-color);
+      position: fixed;
+      height: 100vh;
+      padding: 2rem 1.5rem; /* Increased padding */
+      left: -270px; /* Adjusted for wider sidebar - initially off-screen */
+      top: 0;
+      transition: left 0.3s cubic-bezier(.77,0,.18,1), background-color 0.3s ease;
+      z-index: 1050;
+      box-shadow: 2px 0 10px var(--shadow-color); /* Softer shadow */
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .sidebar.show {
+      left: 0; /* When 'show' class is present, sidebar is visible */
+    }
+    .sidebar img {
+      width: 80px; /* Adjusted logo size for balance */
+      height: 80px;
+      object-fit: cover;
+      margin-bottom: 1.5rem; /* More space */
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      border-radius: 50%; /* Ensure perfect circle */
+      border: 2px solid var(--main-brand-color-border); /* Subtle border around logo */
+    }
+    .sidebar h4 {
+      color: var(--main-brand-color);
+      transition: color 0.3s ease;
+      font-weight: 600; /* Bolder heading */
+      font-size: 1.15rem; /* Slightly smaller for sidebar */
+    }
+    .sidebar a {
+      color: var(--text-color-secondary); /* Muted link color */
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      padding: 0.85rem 1.2rem; /* More padding */
+      border-radius: 0.6rem; /* More rounded */
+      font-size: 0.95rem;
+      width: 100%;
+      transition: background 0.2s ease-in-out, color 0.2s ease-in-out;
+      font-weight: 500;
+      gap: 0.75rem; /* Increased gap for icon and text */
+    }
+    .sidebar a:hover, .sidebar a.fw-bold {
+      background-color: var(--main-brand-color-bg-hover);
+      color: var(--main-brand-color);
+    }
+    .sidebar a.fw-bold { /* Ensure active link is clearly visible */
+        color: var(--main-brand-color);
+        font-weight: 600;
+    }
+    .sidebar .active-label {
+      text-align: center;
+      background-color: var(--main-brand-color);
+      color: #ffffff;
+      font-weight: bold;
+      padding: 0.6rem 1rem; /* Adjusted padding */
+      border-radius: 0.4rem; /* More rounded */
+      margin-bottom: 2rem; /* More space */
+      width: 100%;
+      letter-spacing: 0.8px; /* Slight letter spacing for enterprise feel */
+      font-size: 0.85rem;
+      text-transform: uppercase; /* Uppercase for formal look */
+    }
+    .sidebar-backdrop {
+      display: none;
+    }
+    .sidebar-backdrop.show {
+      display: block;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.15); /* Softer backdrop */
+      z-index: 1049;
+    }
+
+    /* Sidebar Toggle */
+    .sidebar-toggle {
+      background: none;
+      border: none;
+      color: var(--main-brand-color);
+      font-size: 1.8rem; /* Adjusted size */
+      display: flex; /* Ensure it's always flex */
+      align-items: center;
+      cursor: pointer;
+      z-index: 1100;
+      transition: color 0.3s ease;
+      padding: 0.2rem; /* Small padding for click area */
+    }
+    .sidebar-toggle i {
+      font-size: 1.8rem; /* Consistent icon size */
+    }
+
+    /* Main Content Area */
+    .dashboard-content {
+      padding: 2rem; /* Uniform padding */
+      transition: margin-left 0.3s;
+      margin-left: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center; /* Center content horizontally */
+    }
+    /* Content shifts only when 'sidebar-visible' class is on body */
+    body.sidebar-visible .dashboard-content {
+      margin-left: 260px; /* Adjusted for wider sidebar */
+    }
+
+    /* Top Navbar */
+    .top-navbar {
+      background-color: var(--top-navbar-bg);
+      padding: 0.8rem 2rem; /* Adjusted padding */
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky; /* Make it sticky */
+      top: 0;
+      z-index: 1200;
+      transition: margin-left 0.3s, background-color 0.3s ease, border-color 0.3s ease;
+      margin-left: 0;
+      box-shadow: 0 2px 8px var(--shadow-color); /* Subtle shadow */
+    }
+    /* Navbar shifts only when 'sidebar-visible' class is on body */
+    body.sidebar-visible .top-navbar {
+      margin-left: 260px; /* Adjusted for wider sidebar */
+    }
+    .top-navbar .navbar-logo {
+        height: 36px; /* Slightly smaller logo */
+        width: auto;
+        margin-right: 0.75rem; /* More space */
+        transition: height 0.3s ease;
+    }
+    .top-navbar .bi {
+      color: var(--main-brand-color);
+      font-size: 1.15rem; /* Consistent icon size */
+      margin-left: 1rem;
+      transition: color 0.3s ease;
+    }
+    .top-navbar .ms-2 {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--text-color);
+      transition: color 0.3s ease;
+    }
+    .top-navbar .ms-2 small {
+        color: var(--text-color-secondary);
+        font-weight: 400; /* Regular weight for welcome text */
+        display: block; /* Ensure it's on its own line */
+        font-size: 0.85rem;
+    }
+
+    /* Dark Mode Toggle specific styles */
+    .dark-mode-toggle {
+      background: none;
+      border: none;
+      color: var(--text-color-secondary); /* Neutral color for toggle */
+      font-size: 1.15rem;
+      margin-left: 1rem;
+      cursor: pointer;
+      transition: color 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.25rem;
+    }
+    .dark-mode-toggle:hover {
+        color: var(--main-brand-color); /* Hover effect */
+    }
+    body.dark-mode .dark-mode-toggle {
+      background: none;
+    }
+    .dark-mode-toggle i {
+      font-size: 1.15rem;
+    }
+
+    /* Dashboard Page Specific Styles (reused for general content container) */
+    .dashboard-container {
+      max-width: 1500px; /* Wider container for more content */
+      background: var(--card-bg);
+      border-radius: 1rem; /* Standard rounded corners */
+      box-shadow: 0 8px 25px var(--card-shadow); /* More pronounced, soft shadow */
+      padding: 3rem; /* Generous padding */
+      margin-top: 2.5rem;
+      margin-bottom: 2.5rem;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      width: 100%; /* Ensure it takes full width within max-width */
+    }
+    .dashboard-container h4 {
+      color: var(--text-color); /* Use general text color for headings */
+      font-weight: 600; /* Medium bold */
+      margin-bottom: 2rem; /* More space below heading */
+      font-size: 1.8rem; /* Prominent heading */
+      transition: color 0.3s ease;
+      border-bottom: 1px solid var(--border-color); /* Subtle line below heading */
+      padding-bottom: 1rem; /* Space for the line */
+    }
+    .table-responsive {
+      margin-top: 2.5rem; /* More space above table */
+    }
+    .table {
+        --bs-table-bg: var(--card-bg);
+        --bs-table-color: var(--text-color);
+        --bs-table-border-color: var(--border-color);
+        vertical-align: middle; /* Vertically align content in table cells */
+        font-size: 0.9rem; /* Slightly smaller text for tables */
+        border-collapse: separate; /* Required for rounded corners */
+        border-spacing: 0; /* Remove default spacing */
+    }
+    .table thead th {
+      border-bottom-width: 2px;
+      border-color: var(--border-color);
+      font-weight: 600; /* Bolder headers */
+      font-size: 0.95rem;
+      padding: 1rem 0.8rem; /* Increased padding */
+      color: var(--text-color-secondary); /* Muted header text */
+      text-transform: uppercase; /* Uppercase for formal look */
+      letter-spacing: 0.5px;
+      background-color: var(--main-brand-color-light); /* Light red background for headers */
+      position: sticky; /* Make headers sticky for scrolling tables */
+      top: 0;
+      z-index: 1; /* Ensure headers stay above content */
+    }
+    .table tbody td {
+        padding: 0.9rem 0.8rem; /* Increased padding for data cells */
+        border-top: 1px solid var(--border-color); /* Border between rows */
+        background-color: var(--card-bg); /* Ensure consistent background for rows */
+    }
+
+    /* Rounded corners for the table */
+    .table thead th:first-child {
+        border-top-left-radius: 0.8rem;
+    }
+    .table thead th:last-child {
+        border-top-right-radius: 0.8rem;
+    }
+    .table tbody tr:last-child td:first-child {
+        border-bottom-left-radius: 0.8rem;
+    }
+    .table tbody tr:last-child td:last-child {
+        border-bottom-right-radius: 0.8rem;
+    }
+
+    .table tbody tr {
+        box-shadow: 0 1px 3px rgba(0,0,0,0.03); /* Subtle shadow for each row */
+        transition: background-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    .table tbody tr:hover {
+        background-color: var(--main-brand-color-light); /* Highlight on hover */
+        cursor: pointer;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08); /* More pronounced shadow on hover */
+    }
+    body.dark-mode .table tbody tr:nth-of-type(even) {
+        background-color: rgba(255,107,107,0.05); /* Dark mode stripe */
+    }
+    body.dark-mode .table tbody tr:hover {
+        background-color: rgba(255,107,107,0.1); /* Dark mode hover */
+    }
+
+    /* Remove default Bootstrap table-bordered styling */
+    .table-bordered {
+      border: none; /* Remove main table border */
+    }
+
+    .table .bg-white { /* Override for table cells to ensure proper background in dark mode */
+        background-color: var(--card-bg) !important;
+        color: var(--text-color);
+    }
+    /* Adjusted badge colors and styles */
+    .table .badge {
+        font-weight: 600;
+        padding: 0.45em 0.8em; /* Slightly larger badges */
+        border-radius: 0.35rem; /* More rounded */
+        text-transform: capitalize; /* Capitalize for status */
+        min-width: 80px; /* Minimum width for consistency */
+        display: inline-block;
+        text-align: center;
+    }
+    .table .badge.bg-success { background-color: var(--status-success) !important; color: white !important;}
+    .table .badge.bg-warning { background-color: var(--status-warning) !important; color: black !important;}
+    .table .badge.bg-danger { background-color: var(--status-danger) !important; color: white !important;}
+    .table .badge.bg-info { background-color: var(--status-info) !important; color: white !important;}
+    .table .badge.bg-secondary { background-color: var(--status-secondary) !important; color: white !important;}
+
+    /* Summary Cards */
+    .summary-card-section {
+        background-color: var(--card-bg);
+        padding: 2.2rem 2.5rem; /* Consistent with filter-actions-bar */
+        border-radius: 0.8rem; /* Consistent with filter-actions-bar */
+        box-shadow: 0 4px 18px var(--shadow-color);
+        margin-bottom: 2.5rem; /* Space below this section */
+        border: 1px solid var(--border-color); /* Subtle border */
+        display: flex; /* For flexible alignment of inner row */
+        justify-content: center; /* Center the cards row */
+    }
+    .summary-card {
+        background-color: var(--card-bg);
+        border-radius: 0.8rem; /* Consistent rounding */
+        padding: 1.8rem; /* Reduced padding slightly for smaller size */
+        box-shadow: 0 4px 18px var(--card-shadow); /* Softer, larger shadow */
+        text-align: center;
+        transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        border: 1px solid var(--border-color); /* Subtle border */
+        height: 100%; /* Ensure cards are same height */
+    }
+    .summary-card .icon {
+        font-size: 2.4rem; /* Smaller icon */
+        color: var(--main-brand-color);
+        margin-bottom: 0.6rem; /* Less space */
+        display: block;
+    }
+    .summary-card .value {
+        font-size: 2.2rem; /* Smaller value */
+        font-weight: bold;
+        color: var(--text-color);
+        margin-bottom: 0.1rem;
+    }
+    .summary-card .label {
+        font-size: 0.85rem; /* Smaller label size */
+        color: var(--text-color-secondary);
+        font-weight: 500;
+    }
+    /* Specific status colors for cards */
+    .summary-card.users .icon { color: #3498db; } /* Blue for users */
+    .summary-card.jobs .icon { color: #27ae60; } /* Green for jobs */
+    .summary-card.leaves .icon { color: #f39c12; } /* Orange for leaves */
+    .summary-card.payroll .icon { color: #8e44ad; } /* Purple for payroll */
+
+
+    /* Filter & Action Bar */
+    .filter-actions-bar {
+        background-color: var(--card-bg);
+        padding: 2.2rem 2.5rem; /* Increased padding */
+        border-radius: 0.8rem; /* Consistent rounding */
+        box-shadow: 0 4px 18px var(--shadow-color);
+        margin-bottom: 2.5rem; /* More space below bar */
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem; /* Consistent gap between elements */
+        align-items: flex-start; /* Align items to the top for multi-line inputs */
+        justify-content: flex-start; /* Align items to the start */
+        transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        border: 1px solid var(--border-color); /* Subtle border */
+    }
+    .filter-actions-bar .form-control,
+    .filter-actions-bar .form-select {
+        flex: 1;
+        min-width: 220px; /* Ensures inputs are not too small */
+        border-color: var(--border-color);
+        background-color: var(--body-bg); /* Use body bg for inputs */
+        color: var(--text-color);
+        padding: 0.7rem 0.9rem; /* More padding */
+        border-radius: 0.4rem; /* More rounded */
+        font-size: 0.9rem;
+        transition: border-color 0.3s ease, background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .filter-actions-bar .form-control::placeholder {
+        color: var(--text-color-light);
+    }
+    .filter-actions-bar .form-control:focus,
+    .filter-actions-bar .form-select:focus {
+        border-color: var(--main-brand-color);
+        box-shadow: 0 0 0 0.2rem var(--main-brand-color-light);
+        background-color: var(--card-bg); /* White background on focus */
+    }
+    /* Modern Button Styles */
+    .btn {
+        min-width: 140px; /* Slightly larger min-width for buttons */
+        padding: 0.75rem 1.25rem; /* More padding */
+        border-radius: 0.5rem; /* More rounded for modern look */
+        font-weight: 600; /* Bolder text for prominence */
+        font-size: 0.95rem; /* Slightly larger font size */
+        transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out, color 0.2s ease-in-out;
+        display: inline-flex; /* For icon alignment */
+        align-items: center;
+        justify-content: center;
+        gap: 0.6rem; /* Space between icon and text */
+        box-shadow: 0 2px 5px var(--shadow-color); /* Subtle default shadow */
+        border-width: 1px; /* Thinner border */
+    }
+
+    .btn:hover {
+        transform: translateY(-1px); /* Slight lift on hover */
+        box-shadow: 0 4px 10px var(--shadow-color); /* Enhanced shadow on hover */
+    }
+
+    .btn:active {
+        transform: translateY(0); /* Press down effect */
+        box-shadow: 0 1px 3px var(--shadow-color);
+    }
+
+    .btn:focus {
+        outline: none;
+        box-shadow: 0 0 0 0.2rem var(--main-brand-color-light), 0 2px 5px var(--shadow-color); /* Focus ring with subtle shadow */
+    }
+
+    /* Specific Button Color Overrides */
+    .btn-danger {
+        background-color: var(--main-brand-color);
+        border-color: var(--main-brand-color);
+        color: white;
+    }
+    .btn-danger:hover {
+        background-color: #a03024; /* Darker red on hover */
+        border-color: #a03024;
+    }
+    .btn-danger:focus {
+        box-shadow: 0 0 0 0.2rem rgba(192, 57, 43, 0.25);
+    }
+
+    .btn-outline-danger {
+        color: var(--main-brand-color);
+        border-color: var(--main-brand-color);
+        background-color: transparent;
+    }
+    .btn-outline-danger:hover {
+        background-color: var(--main-brand-color);
+        color: white;
+    }
+    .btn-outline-danger:focus {
+        box-shadow: 0 0 0 0.2rem rgba(192, 57, 43, 0.25);
+    }
+
+    .btn-primary {
+        background-color: #3498db; /* Consistent info blue as primary */
+        border-color: #3498db;
+        color: white;
+    }
+    .btn-primary:hover {
+        background-color: #2a7cbd;
+        border-color: #2a7cbd;
+    }
+    .btn-primary:focus {
+        box-shadow: 0 0 0 0.2rem rgba(52, 152, 219, 0.25);
+    }
+
+    .btn-info {
+        background-color: #1abc9c; /* Consistent info color */
+        border-color: #1abc9c;
+        color: white;
+    }
+    .btn-info:hover {
+        background-color: #148f77;
+        border-color: #148f77;
+    }
+    .btn-info:focus {
+        box-shadow: 0 0 0 0.2rem rgba(26, 188, 156, 0.25);
+    }
+
+    .btn-secondary {
+        background-color: #95a5a6;
+        border-color: #95a5a6;
+        color: white;
+    }
+    .btn-secondary:hover {
+        background-color: #6c7a7b;
+        border-color: #6c7a7b;
+    }
+    .btn-secondary:focus {
+        box-shadow: 0 0 0 0.2rem rgba(149, 165, 166, 0.25);
+    }
+
+    .btn-success {
+        background-color: #27ae60;
+        border-color: #27ae60;
+        color: white;
+    }
+    .btn-success:hover {
+        background-color: #229954;
+        border-color: #229954;
+    }
+    .btn-success:focus {
+        box-shadow: 0 0 0 0.2rem rgba(39, 174, 96, 0.25);
+    }
+
+    /* Table Actions Button - smaller and subtle */
+    .table .btn {
+        min-width: unset; /* Remove min-width constraint for table buttons */
+        padding: 0.5rem 0.8rem; /* Smaller padding */
+        font-size: 0.85rem; /* Smaller font */
+        box-shadow: none; /* No shadow for table buttons */
+        transition: background-color 0.15s ease-in-out, color 0.15s ease-in-out;
+    }
+    .table .btn:hover {
+        transform: none; /* No lift on hover for table buttons */
+        box-shadow: none;
+    }
+    .table .btn-outline-secondary {
+        color: var(--text-color-secondary);
+        border-color: var(--border-color);
+        background-color: transparent;
+    }
+    .table .btn-outline-secondary:hover {
+        background-color: var(--border-color);
+        color: var(--text-color);
+    }
+    .table .btn-outline-secondary:focus {
+        box-shadow: 0 0 0 0.2rem var(--border-color);
+    }
+
+
+    .filter-actions-bar .dropdown-menu {
+        background-color: var(--card-bg);
+        border-color: var(--border-color);
+        border-radius: 0.75rem; /* Consistent rounding */
+        box-shadow: 0 6px 20px var(--shadow-color); /* Softer shadow */
+        padding: 0.5rem 0; /* Adjusted padding */
+    }
+    .filter-actions-bar .dropdown-item {
+        color: var(--text-color);
+        padding: 0.7rem 1.2rem; /* More padding */
+        display: flex;
+        align-items: center;
+        gap: 0.8rem; /* More space for icons */
+        font-size: 0.9rem;
+    }
+    .filter-actions-bar .dropdown-item:hover {
+        background-color: var(--main-brand-color-bg-hover);
+        color: var(--main-brand-color);
+    }
+
+    /* Flatpickr Dark Mode adjustments */
+    body.dark-mode .flatpickr-calendar {
+        background: var(--card-bg) !important;
+        border-color: var(--border-color) !important;
+        color: var(--text-color) !important;
+        box-shadow: 0 6px 20px rgba(0,0,0,0.4) !important;
+    }
+    body.dark-mode .flatpickr-day.selected,
+    body.dark-mode .flatpickr-day.startRange,
+    body.dark-mode .flatpickr-day.endRange {
+        background: var(--main-brand-color) !important;
+        border-color: var(--main-brand-color) !important;
+        color: white !important;
+    }
+    body.dark-mode .flatpickr-day.today:not(.selected) {
+        border-color: var(--main-brand-color) !important;
+        color: var(--text-color) !important;
+    }
+    body.dark-mode .flatpickr-day:hover,
+    body.dark-mode .flatpickr-day.inRange {
+        background: var(--main-brand-color-bg-hover) !important;
+        color: var(--text-color) !important;
+    }
+    body.dark-mode .flatpickr-month,
+    body.dark-mode .flatpickr-weekday,
+    body.dark-mode .flatpickr-current-month .flatpickr-monthDropdown-months,
+    body.dark-mode .numInputWrapper span,
+    body.dark-mode .flatpickr-time input {
+        color: var(--text-color) !important;
+    }
+    body.dark-mode .flatpickr-arrows .flatpickr-prev-month,
+    body.dark-mode .flatpickr-arrows .flatpickr-next-month {
+        color: var(--text-color) !important;
+    }
+
+
+    /* Pagination styles */
+    .pagination .page-item .page-link {
+        background-color: var(--card-bg);
+        border-color: var(--border-color);
+        color: var(--text-color);
+        padding: 0.7rem 1rem; /* More padding */
+        border-radius: 0.4rem; /* More rounded */
+        margin: 0 0.2rem; /* Space between links */
+        transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+        font-size: 0.9rem;
+    }
+    .pagination .page-item.active .page-link {
+        background-color: var(--main-brand-color);
+        border-color: var(--main-brand-color);
+        color: white;
+    }
+    .pagination .page-item .page-link:hover {
+        background-color: var(--main-brand-color-bg-hover);
+        color: var(--main-brand-color); /* Hover color for text */
+        border-color: var(--main-brand-color-light);
+    }
+    body.dark-mode .pagination .page-item .page-link:hover {
+        color: var(--text-color) !important; /* Ensure hover text color in dark mode */
+    }
+
+    /* Specific styles for table action dropdowns */
+    .table .dropdown-toggle::after {
+        vertical-align: middle;
+        margin-left: 0.5rem;
+    }
+    .table .dropdown-menu {
+        min-width: 13rem; /* Ensure enough width for text and icons */
+        background-color: var(--card-bg);
+        border-color: var(--border-color);
+        box-shadow: 0 4px 15px var(--shadow-color);
+        border-radius: 0.6rem; /* Consistent rounding */
+        padding: 0.5rem 0;
+    }
+    .table .dropdown-item {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        color: var(--text-color);
+        padding: 0.65rem 1rem;
+        font-size: 0.9rem;
+    }
+    .table .dropdown-item:hover {
+        background-color: var(--main-brand-color-bg-hover);
+        color: var(--main-brand-color);
+    }
+    .table .dropdown-item.text-success { color: #27ae60 !important;}
+    .table .dropdown-item.text-danger { color: #e74c3c !important;}
+    .table .dropdown-item.text-warning { color: #f39c12 !important;}
+    .table .dropdown-item.text-success:hover { background-color: rgba(39,174,96,0.1) !important;}
+    .table .dropdown-item.text-danger:hover { background-color: rgba(231,76,60,0.1) !important;}
+    .table .dropdown-item.text-warning:hover { background-color: rgba(243,156,18,0.1) !important; }
+
+    /* Modal styling */
+    .modal-content {
+        background-color: var(--card-bg);
+        color: var(--text-color);
+        border-radius: 1rem;
+        box-shadow: 0 8px 30px var(--card-shadow);
+        border: 1px solid var(--border-color);
+    }
+    .modal-header {
+        border-bottom: 1px solid var(--border-color);
+        padding: 1.5rem 2.5rem; /* Updated to match filter-actions-bar horizontal padding */
+    }
+    .modal-header .modal-title {
+        color: var(--text-color);
+        font-weight: 600;
+        font-size: 1.25rem;
+    }
+    .modal-body {
+        padding: 2.2rem 2.5rem; /* Updated to match filter-actions-bar */
+    }
+    .modal-footer {
+        border-top: 1px solid var(--border-color);
+        padding: 1rem 2.5rem; /* Updated to match filter-actions-bar horizontal padding */
+    }
+    .modal .form-label {
+        font-weight: 500;
+        color: var(--text-color-secondary);
+        font-size: 0.9rem;
+        margin-bottom: 0.4rem;
+    }
+    .modal .form-control,
+    .modal .form-select,
+    .modal textarea.form-control {
+        border-color: var(--border-color);
+        background-color: var(--body-bg);
+        color: var(--text-color);
+        padding: 0.75rem 1rem;
+        border-radius: 0.4rem;
+        font-size: 0.9rem;
+    }
+    .modal .form-control:focus,
+    .modal .form-select:focus,
+    .modal textarea.form-control:focus {
+        border-color: var(--main-brand-color);
+        box-shadow: 0 0 0 0.2rem var(--main-brand-color-light);
+        background-color: var(--card-bg);
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 991.98px) {
+        .top-navbar {
+            justify-content: space-between;
+        }
+        .dashboard-content,
+        .top-navbar {
+            margin-left: 0 !important;
+        }
+        .sidebar-toggle {
+            display: flex !important;
+        }
+        .dashboard-container {
+            padding: 1.5rem 1rem;
+        }
+        .filter-actions-bar {
+            flex-direction: column;
+            align-items: stretch;
+        }
+        .filter-actions-bar .form-control,
+        .filter-actions-bar .form-select,
+        .filter-actions-bar .btn,
+        .filter-actions-bar .dropdown,
+        .filter-actions-bar .btn-group {
+            min-width: unset;
+            width: 100%;
+        }
+        .filter-actions-bar .d-flex.gap-2 {
+            flex-direction: column;
+            width: 100%;
+        }
+        .filter-actions-bar .d-flex.gap-2 button {
+            width: 100%;
+        }
+        /* Prevent text wrapping in table headers/cells on smaller screens if they become too narrow */
+        .table-responsive .table thead th,
+        .table-responsive .table tbody td {
+            white-space: nowrap;
+        }
+    }
+
+    /* New/Modified CSS for smaller summary cards */
+    .row.justify-content-center.g-4 {
+        max-width: 900px; /* Constrain the row width for centering */
+        margin-left: auto;
+        margin-right: auto;
+        width: 100%; /* Ensure the row takes full width of its parent */
+    }
+    .summary-card-col {
+        max-width: 250px; /* Maximum width for each card column */
+        flex: 1 1 200px; /* Allow cards to grow/shrink but with a base of 200px */
+    }
+    @media (min-width: 768px) {
+        .summary-card-col {
+            flex: 0 0 30% !important; /* Forces 3 cards per row, approximately 30% width each */
+            max-width: 30% !important; /* Ensures consistent sizing */
+        }
+    }
+    @media (min-width: 992px) {
+        .summary-card-col {
+            flex: 0 0 23% !important; /* Even smaller for more content on large screens (4 cards) */
+            max-width: 23% !important;
+        }
+    }
+    @media (max-width: 575.98px) {
+        .summary-card-col {
+            flex: 1 1 100% !important; /* Stack vertically on small phones */
+            max-width: 100% !important;
+        }
+    }
+
+    /* Terms of Service Specific Styles */
+    .terms-content {
+      padding: 2rem;
+      background-color: var(--card-bg);
+      border-radius: 1rem;
+      box-shadow: 0 4px 18px var(--card-shadow);
+      margin-top: 2.5rem;
+      margin-bottom: 2.5rem;
+      border: 1px solid var(--border-color);
+      max-width: 900px; /* Max width for readability */
+      width: 100%;
+      line-height: 1.8; /* Increased line height for readability */
+    }
+
+    .terms-content h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--main-brand-color);
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    .terms-content h2 {
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: var(--text-color);
+      margin-top: 2.5rem;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 0.5rem;
+    }
+
+    .terms-content p {
+      margin-bottom: 1rem;
+      color: var(--text-color-secondary);
+    }
+
+    .terms-content ul {
+      list-style-type: disc;
+      padding-left: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .terms-content ul li {
+      margin-bottom: 0.5rem;
+      color: var(--text-color-secondary);
+    }
+
+    .terms-content strong {
+      color: var(--text-color);
+    }
+
+    .terms-content .effective-date {
+      font-style: italic;
+      color: var(--text-color-muted);
+      text-align: center;
+      margin-bottom: 2rem;
+      display: block;
+    }
+
+    .terms-content .contact-info {
+      background-color: var(--body-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 0.8rem;
+      padding: 1.5rem;
+      margin-top: 2.5rem;
+    }
+
+    .terms-content .contact-info p {
+      margin-bottom: 0.5rem;
+      color: var(--text-color);
+    }
+
+    .terms-content .contact-info strong {
+      color: var(--main-brand-color);
+    }
+  </style>
+</head>
+<body>
+
+
+  <div class="top-navbar" id="topNavbar">
+    <div class="d-flex align-items-center">
+      <img src="/assets/Logo.jpg" alt="Company Logo" class="navbar-logo rounded-circle">
+    </div>
+    <div class="d-flex align-items-center ms-auto">
+      <a href="index.html" style="text-decoration:none;">
+        <i class="bi bi-person-circle"></i>
+      </a>
+      <!-- <span class="ms-2" id="adminNameDisplay">Admin Name<br><small>Welcome!</small></span>-->
+    </div>
+  </div>
+
+  <div class="dashboard-content d-flex justify-content-center align-items-center min-vh-100" id="mainContent" style="padding:0;">
+    <div class="dashboard-container">
+      <div class="terms-content">
+        <h1>RecruitEase-HR Privacy Policy</h1>
+        <p class="effective-date">Effective Date: July 24, 2025</p>
+
+
+        <h2>1. Introduction</h2>
+        <p>RecruitEase-HR ("the System") is a comprehensive human resources management platform that enables applicants, employees, recruiters, HR staff, and administrators to manage recruitment, onboarding, employment records, payroll, attendance, and communication in a secure and ethical manner. We are committed to protecting your privacy and upholding your legal rights under the Philippine Data Privacy Act of 2012 (RA 10173) and other applicable laws. This Privacy Policy explains how we collect, use, disclose, and safeguard your information, and how you can exercise your rights as a user of the System. We adhere to the highest standards of data protection, transparency, and ethical conduct in all our operations.</p>
+
+        <h2>2. Information We Collect</h2>
+        <ul>
+          <li><strong>Personal Identification Information:</strong> Name, email address, phone number, and other contact details.</li>
+          <li><strong>Employment Information:</strong> Job applications, resumes, employment history, and related documents.</li>
+          <li><strong>Usage Data:</strong> Information about how you use the System, including log files, IP addresses, browser type, and access times.</li>
+          <li><strong>Cookies and Tracking Technologies:</strong> To enhance user experience and analyze usage patterns.</li>
+        </ul>
+
+        <h2>3. How We Use Your Information</h2>
+        <p>We use the collected information to:</p>
+        <ul>
+          <li>Provide, operate, and maintain the System.</li>
+          <li>Process job applications and manage HR functions.</li>
+          <li>Communicate with users regarding updates, support, and notifications.</li>
+          <li>Improve our services and develop new features.</li>
+          <li>Ensure security and prevent fraud.</li>
+        </ul>
+
+        <h2>4. Information Sharing and Disclosure</h2>
+        <p>We do not sell or rent your personal information. We may share information with:</p>
+        <ul>
+          <li>Authorized personnel within your organization.</li>
+          <li>Service providers who assist in operating the System (subject to confidentiality agreements).</li>
+          <li>Law enforcement or regulatory authorities if required by law.</li>
+        </ul>
+
+        <h2>5. Data Security</h2>
+        <p>We implement appropriate technical and organizational measures to protect your information from unauthorized access, disclosure, alteration, or destruction.</p>
+
+        <h2>6. Data Retention</h2>
+        <p>We retain personal information only as long as necessary to fulfill the purposes outlined in this policy or as required by law.</p>
+
+        <h2>7. Your Rights</h2>
+        <p>Depending on your jurisdiction, you may have the right to:</p>
+        <ul>
+          <li>Access, correct, or delete your personal information.</li>
+          <li>Object to or restrict certain processing activities.</li>
+          <li>Withdraw consent where processing is based on consent.</li>
+        </ul>
+        <p>To exercise these rights, please contact us at the address below.</p>
+
+        <h2>8. Third-Party Links</h2>
+        <p>The System may contain links to third-party websites. We are not responsible for the privacy practices or content of such sites.</p>
+
+        <h2>9. Changes to This Policy</h2>
+        <p>We may update this Privacy Policy from time to time. Changes will be posted on this page with an updated effective date.</p>
+
+        <h2>10. Contact Us</h2>
+        <div class="contact-info">
+          <p>If you have any questions or concerns about this Privacy Policy or our data practices, please contact:</p>
+          <p><strong>RecruitEase-HR Support</strong></p>
+          <p>Email: <a href="mailto:support@recruitease-hr.com">support@recruitease-hr.com</a> | <a href="mailto:allyzalanquino.ja@gmail.com">allyzalanquino.ja@gmail.com</a></p>
+          <p>Address: Fb Bailon St. Calcetas Bldg. Brgy. Sala 4025 Cabuyao, Philippines</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const sidebarToggle = document.getElementById('sidebarToggle');
+      const sidebar = document.getElementById('sidebar');
+      const sidebarBackdrop = document.getElementById('sidebarBackdrop');
+      const mainContent = document.getElementById('mainContent');
+      const topNavbar = document.getElementById('topNavbar');
+
+      function toggleSidebar() {
+        sidebar.classList.toggle('show');
+        sidebarBackdrop.classList.toggle('show');
+        document.body.classList.toggle('sidebar-visible');
+      }
+
+      sidebarToggle.addEventListener('click', toggleSidebar);
+      sidebarBackdrop.addEventListener('click', toggleSidebar);
+
+      // Dark Mode Toggle
+      const darkModeToggle = document.getElementById('darkModeToggle');
+      const currentTheme = localStorage.getItem('theme');
+      if (currentTheme) {
+        document.body.classList.add(currentTheme);
+        if (currentTheme === 'dark-mode') {
+          darkModeToggle.querySelector('i').classList.replace('bi-moon-fill', 'bi-sun-fill');
+        }
+      }
+      darkModeToggle.addEventListener('click', function() {
+        document.body.classList.toggle('dark-mode');
+        let theme = 'light-mode';
+        if (document.body.classList.contains('dark-mode')) {
+          theme = 'dark-mode';
+          this.querySelector('i').classList.replace('bi-moon-fill', 'bi-sun-fill');
+        } else {
+          this.querySelector('i').classList.replace('bi-sun-fill', 'bi-moon-fill');
+        }
+        localStorage.setItem('theme', theme);
+      });
+
+      // Dummy Admin Name for Navbar
+      document.getElementById('adminNameDisplay').innerHTML = `Admin User<br><small>Welcome!</small>`;
+    });
+  </script>
+</body>
+</html>
